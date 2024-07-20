@@ -1,20 +1,21 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-from src.infrastructure.settings import config as cnf
-from src.infrastructure.models.base import Base
 from alembic import context
+from sqlalchemy import engine_from_config, pool
+
+from src.infrastructure.models.base import Base
+from src.infrastructure.models.city import City
+from src.infrastructure.settings import config as cnf
 
 config = context.config
 section = config.config_ini_section
 
 
 config.set_section_option(section, "DB_USER", cnf.db_username)
-config.set_main_option(section, "DB_PASSWORD", cnf.db_password)
-config.set_main_option(section, "DB_HOST", cnf.db_host)
-config.set_main_option(section, "DB_PORT", cnf.db_port)
-config.set_main_option(section, "DB_NAME", cnf.db_name)
+config.set_section_option(section, "DB_PASSWORD", cnf.db_password)
+config.set_section_option(section, "DB_HOST", cnf.db_host)
+config.set_section_option(section, "DB_PORT", cnf.db_port)
+config.set_section_option(section, "DB_NAME", cnf.db_name)
 
 
 if config.config_file_name is not None:
