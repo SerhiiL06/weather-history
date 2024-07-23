@@ -11,5 +11,7 @@ class Settings(BaseSettings):
     db_port: str = Field(alias="POSTGRES_PORT")
     db_name: str = Field(alias="POSTGRES_NAME")
 
+    weather_key: str = Field(alias="OPEN_WEATHER_KEY")
+
 
 config = Settings()

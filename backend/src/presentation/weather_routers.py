@@ -14,8 +14,7 @@ weather_router = APIRouter()
 @weather_router.post("/", response_model=None)
 @inject
 async def fetch_weather_by_city(
-    city_name: str,
-    session: Annotated[AsyncSession, Depends(session_transaction)],
+    ip_address: str,
     service: FromDishka[WeatherServiceImpl],
 ):
-    return await service.current_weather(city_name, session)
+    return await service.current_weather(ip_address)
